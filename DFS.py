@@ -1,3 +1,8 @@
+import sys
+sys.setrecursionlimit(1000000)
+
+
+
 def dfs_find(maze):
     n = len(maze) - 2
     visited = [[False for _ in range(n + 1)] for _ in range(n + 1)]
