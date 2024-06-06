@@ -93,8 +93,8 @@ def printMap(map, line_end=''):
     print('■')
 
 
-w = 100  # 미로의 가로 크기
-h = 100  # 미로의 세로 크기
+w = 200  # 미로의 가로 크기
+h = 200  # 미로의 세로 크기
 
 map = np.ndarray([w, h, 2], int)
 map[::] = -1

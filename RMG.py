@@ -67,5 +67,5 @@ def maze_func(n):
     print(miro)
 
 # n은 반드시 2 이상의 정수이어야 한다.
-n = 20
+n = 100
 maze_func(n)
