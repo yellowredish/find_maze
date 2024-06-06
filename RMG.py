@@ -68,5 +68,5 @@ def maze_func(n):
         print(row)
 
 # n은 반드시 2 이상의 정수이어야 한다.
-n = 10
+n = 5
 maze_func(n)
