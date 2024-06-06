@@ -64,9 +64,8 @@ def maze_func(n):
     
     change5to1(miro)
     # 미로 출력
-    for row in miro:
-        print(row)
+    print(miro)
 
 # n은 반드시 2 이상의 정수이어야 한다.
-n = 5
+n = 7
 maze_func(n)
