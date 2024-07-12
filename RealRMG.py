@@ -76,7 +76,7 @@ def drawMap(map):
 # 위의 메서드는 미로의 외벽을 표현하지 않으므로, 외벽을 추가해준다.
 # 빈 네모는 경로, 색칠된 네모는 벽을 뜻한다.
 def printMap(map, line_end=''):
-    assert len(map.shape) is 2
+    assert len(map.shape) == 2
     for i in range(map.shape[1] + 1):
         print('■', end=line_end)
     print('■')
