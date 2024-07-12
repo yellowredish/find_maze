@@ -40,9 +40,12 @@ def bfs_find(maze: list[list[int]]): #정사각형의 미로에서 작동
 
 
 if __name__ == "__main__":
-    from RMG import generate_maze
-    maze = generate_maze(20)
-    print(maze)
+    maze = [[1, 1, 1, 1, 1, 1],
+            [1, 0, 1, 1, 0, 1],
+            [1, 0, 0, 1, 0, 1],
+            [1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1]]
     
     route = bfs_find(maze)
     print("BFS: ", route)
