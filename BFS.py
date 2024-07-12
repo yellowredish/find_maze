@@ -32,18 +32,17 @@ def bfs_find(maze: list[list[int]]): #정사각형의 미로에서 작동
     while route[-1] != (inity, initx):
         x, y = route[-1]
         route.append(prev_vertex[x][y])
+        #print(route)
+
     route.reverse()
     route.append((n-2, n-2))
     return route
 
 
 if __name__ == "__main__":
-    maze = [[1, 1, 1, 1, 1, 1],
-            [1, 0, 1, 1, 0, 1],
-            [1, 0, 0, 1, 0, 1],
-            [1, 1, 0, 0, 0, 1],
-            [1, 0, 0, 1, 0, 1],
-            [1, 1, 1, 1, 1, 1]]
+    from RMG import generate_maze
+    maze = generate_maze(20)
+    print(maze)
     
     route = bfs_find(maze)
     print("BFS: ", route)
