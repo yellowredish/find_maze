@@ -1,6 +1,5 @@
 import numpy as np
 import random
-import time
 
 
 # 본 프로그램은 numpy 3차원 배열을 맵으로 사용함.
@@ -77,38 +76,58 @@ def drawMap(map):
 # 빈 네모는 경로, 색칠된 네모는 벽을 뜻한다.
 def printMap(map, line_end=''):
     assert len(map.shape) == 2
+    maze = []
+
+    mazerow = []
     for i in range(map.shape[1] + 1):
-        print('■', end=line_end)
-    print('■')
+        #print('■', end=line_end)
+        mazerow.append(1)
+    #print('■')
+    mazerow.append(1)
+    maze.append(mazerow)
     for row in map:
-        print('■', end=line_end)
+        #print('■', end=line_end)
+        mazerow = [1]
         for item in row:
             if item == 0:
-                print('■', end=line_end)
+                #print('■', end=line_end)
+                mazerow.append(1)
             else:
-                print('□', end=line_end)
-        print('■')
+                #print('□', end=line_end)
+                mazerow.append(0)
+        #print('■')
+        mazerow.append(1)
+        maze.append(mazerow)
+    mazerow = []
     for i in range(map.shape[1] + 1):
-        print('■', end=line_end)
-    print('■')
+        #print('■', end=line_end)
+        mazerow.append(1)
+    #print('■')
+    mazerow.append(1)
+    maze.append(mazerow)
 
+    return maze
 
-w = 200  # 미로의 가로 크기
-h = 200  # 미로의 세로 크기
+def generate_maze(width, height):
+    map = np.ndarray([width, height, 2], int)
+    map[::] = -1
+    current = [0, 0]  # 현재 칸. 초기값은 시작점을 뜻한다. 예컨대 [w/2,h/2]로 설정하면 중간에서부터 미로를 만든다.
+    visited = []
+    while True:
+        map[0, 0, :] = 0
+        current = go_next(current, map, visited)
+        if current == None:
+            break
 
-map = np.ndarray([w, h, 2], int)
-map[::] = -1
-current = [0, 0]  # 현재 칸. 초기값은 시작점을 뜻한다. 예컨대 [w/2,h/2]로 설정하면 중간에서부터 미로를 만든다.
-visited = []
+    return printMap(drawMap(map))
 
-print('Start generating...')
-start_time = time.time()
-while True:
-    map[0, 0, :] = 0
-    current = go_next(current, map, visited)
-    if current == None:
-        break
-end_time = time.time()
+if __name__ == "__main__":
+    from time import time
+    W, H = 200, 200
 
-printMap(drawMap(map))
-print('It took ', round(end_time - start_time, 2), 's to generate ', w, ' x ', h, ' size map.', sep='')
+    print("generating maze...")
+    timestamp = time()
+    maze = generate_maze(W, H)
+    record = time() - timestamp
+    print(maze)
+    print(f"It took {record:.2f} seconds to generate {W} x {H} size maze")
