@@ -5,34 +5,34 @@ from BFS import bfs_find
 from OneAnswerRMG import generate_maze
 
 CASES = 10
-for n in range(1, CASES+1):
+for n in range(CASES):
     WIDTH, HEIGHT = 200, 200
-    print(f"maze {n} generating...")
+    print(f"maze {n+1}/{CASES} generating...")
     oneway_maze = generate_maze(WIDTH, HEIGHT)
-    print(f"maze {n} generated")
+    print(f"maze {n+1}/{CASES} generated")
 
     REPEATS = 10
-    for i in range(1, REPEATS+1):
+    for i in range(REPEATS):
         ave_record = 0
         timestamp = time.time()
         dfs_find(oneway_maze)
         currecord = time.time() - timestamp
         ave_record += currecord / REPEATS
-        print("DFS", i, currecord)
+        print("DFS", i+1, currecord)
 
-    if n: plt.plot(n, ave_record, 'ro')
-    else: plt.plot(n, ave_record, 'ro', label="DFS")
+    if n: plt.plot(n+1, ave_record, 'ro')
+    else: plt.plot(n+1, ave_record, 'ro', label="DFS")
 
-    for i in range(1, REPEATS+1):
+    for i in range(REPEATS):
         ave_record = 0
         timestamp = time.time() 
         bfs_find(oneway_maze)
         currecord = time.time() - timestamp
         ave_record += currecord / REPEATS
-        print("BFS", i, currecord)
+        print("BFS", i+1, currecord)
 
-    if n: plt.plot(n, ave_record, 'bo')
-    else: plt.plot(n, ave_record, 'bo', label="BFS")
+    if n: plt.plot(n+1, ave_record, 'bo')
+    else: plt.plot(n+1, ave_record, 'bo', label="BFS")
 
 
 plt.title('Time compare between DFS and BFS')
