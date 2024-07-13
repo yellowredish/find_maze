@@ -27,7 +27,7 @@ def bfs_find(maze: list[list[int]]): #정사각형의 미로에서 작동
             visited[next_y][next_x] = True
             q.append((next_x, next_y))
             prev_vertex[next_y][next_x] = (y, x)
-
+    
     route = [prev_vertex[n-2][n-2]]
     while route[-1] != (inity, initx):
         x, y = route[-1]
